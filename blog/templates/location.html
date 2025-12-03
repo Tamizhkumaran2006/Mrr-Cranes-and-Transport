@@ -1,0 +1,393 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<section class="page-content">
+    <h1>Our Location</h1>
+    <p class="page-intro">Visit us at our state-of-the-art facility in Kannapalayam, Chennai</p>
+
+    <div class="location-container">
+        <!-- Main Location -->
+        <section class="location-section">
+            <h2>📍 Main Office & Facility</h2>
+            <div class="location-grid">
+                <div class="location-card">
+                    <h3>Kannapalayam Facility</h3>
+                    <div class="location-details">
+                        <p><strong>Address:</strong></p>
+                        <p>No. 2/723, Near Master Linque Automation<br>NSR Nagar Main Road, Kannapalayam<br>Chennai – 600072, Tamil Nadu</p>
+                        
+                        <p><strong>📞 Contact:</strong></p>
+                        <p><a href="tel:9841099558">9841099558</a></p>
+                        
+                        <p><strong>📧 Email:</strong></p>
+                        <p><a href="mailto:mrrcranesandtransport@gmail.com">mrrcranesandtransport@gmail.com</a></p>
+                        
+                        <p><strong>🏢 GST Number:</strong></p>
+                        <p>33APBPR4981D1ZX</p>
+                        
+                        <p><strong>⏰ Operating Hours:</strong></p>
+                        <p class="highlight">24x7 Available</p>
+                    </div>
+                    <a href="https://maps.google.com" target="_blank" class="btn-direction">Get Directions →</a>
+                </div>
+
+                <div class="map-card">
+                    <h3>Map Location</h3>
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3888.9203394625!2d80.1234!3d13.0123!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a5266f1234567%3A0x1234567890abcd!2sKannapalayam%2C%20Chennai!5e0!3m2!1sen!2sin!4v1234567890" width="100%" height="300" style="border:0; border-radius: 8px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+            </div>
+        </section>
+
+        <!-- Service Areas -->
+        <section class="service-areas">
+            <h2>🎯 Service Coverage Areas</h2>
+            <p class="section-intro">We operate across Chennai and surrounding industrial zones</p>
+            
+            <div class="areas-grid">
+                <div class="area-card">
+                    <h4>Kannapalayam & NSR Nagar</h4>
+                    <p>Primary operational hub with full equipment facility and trained crew.</p>
+                </div>
+                <div class="area-card">
+                    <h4>Poonamallee Industrial Zone</h4>
+                    <p>Specialized services for manufacturing units, automotive, and heavy industries.</p>
+                </div>
+                <div class="area-card">
+                    <h4>Avadi & Surrounding Areas</h4>
+                    <p>Heavy equipment rentals and transport for construction projects.</p>
+                </div>
+                <div class="area-card">
+                    <h4>Outer Ring Road (OMR)</h4>
+                    <p>Infrastructure projects, bridge lifting, and structural transportation.</p>
+                </div>
+                <div class="area-card">
+                    <h4>Chennai Metro & Suburbs</h4>
+                    <p>Urban construction projects, equipment installation, and emergency services.</p>
+                </div>
+                <div class="area-card">
+                    <h4>Industrial Corridors</h4>
+                    <p>Heavy machinery shifting and specialized transport across city.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Accessibility Info -->
+        <section class="accessibility-section">
+            <h2>🚗 How to Reach Us</h2>
+            <div class="directions-grid">
+                <div class="direction-item">
+                    <h4>From Chennai Airport</h4>
+                    <p>Approximately 25 km<br>40-50 minutes via Outer Ring Road</p>
+                </div>
+                <div class="direction-item">
+                    <h4>From Central Station</h4>
+                    <p>Approximately 15 km<br>30-40 minutes via NH-48</p>
+                </div>
+                <div class="direction-item">
+                    <h4>From Poonamallee</h4>
+                    <p>Approximately 8 km<br>15-20 minutes via industrial route</p>
+                </div>
+                <div class="direction-item">
+                    <h4>By Public Transport</h4>
+                    <p>Regular bus services<br>Nearest Metro: Porur Station</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Why Visit Us -->
+        <section class="visit-section">
+            <h2>Why Visit Our Facility?</h2>
+            <ul class="visit-checklist">
+                <li>✓ Modern, well-maintained equipment yard</li>
+                <li>✓ Direct consultation with experienced engineers</li>
+                <li>✓ Viewing of available cranes and transport vehicles</li>
+                <li>✓ On-site discussion for custom project planning</li>
+                <li>✓ Quick turnaround for quotations and job scheduling</li>
+                <li>✓ 24x7 available for emergency consultations</li>
+            </ul>
+        </section>
+
+        <!-- CTA -->
+        <section class="location-cta">
+            <h3>Ready to Visit?</h3>
+            <p>Contact us in advance for facility tour and equipment viewing</p>
+            <div class="cta-buttons">
+                <a href="tel:9841099558" class="btn-call">📞 Call Now</a>
+                <a href="{% url 'blog:contact' %}" class="btn-email">📧 Send Message</a>
+            </div>
+        </section>
+    </div>
+</section>
+
+<style>
+.page-intro {
+    text-align: center;
+    font-size: 18px;
+    color: #666;
+    margin-bottom: 40px;
+}
+
+.location-container {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+/* Location Section */
+.location-section {
+    margin-bottom: 60px;
+}
+
+.location-section h2 {
+    font-size: 32px;
+    color: #1d2939;
+    margin-bottom: 30px;
+    border-left: 4px solid #ff5e14;
+    padding-left: 15px;
+}
+
+.location-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+}
+
+.location-card, .map-card {
+    background: white;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+}
+
+.location-card h3, .map-card h3 {
+    font-size: 22px;
+    color: #1d2939;
+    margin-bottom: 20px;
+}
+
+.location-details p {
+    margin-bottom: 15px;
+    color: #666;
+    font-size: 15px;
+    line-height: 1.8;
+}
+
+.location-details strong {
+    color: #1d2939;
+    font-weight: bold;
+}
+
+.highlight {
+    background: #fffacd;
+    padding: 8px 12px;
+    border-radius: 5px;
+    color: #ff5e14;
+    font-weight: bold;
+    display: inline-block;
+}
+
+.location-details a {
+    color: #ff5e14;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.location-details a:hover {
+    text-decoration: underline;
+}
+
+.btn-direction {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 12px 25px;
+    background: #ff5e14;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.btn-direction:hover {
+    background: #1d2939;
+    transform: translateX(5px);
+}
+
+/* Service Areas */
+.service-areas {
+    margin-bottom: 60px;
+    padding: 40px;
+    background: #f9f9f9;
+    border-radius: 8px;
+}
+
+.service-areas h2 {
+    font-size: 32px;
+    color: #1d2939;
+    margin-bottom: 15px;
+}
+
+.section-intro {
+    color: #666;
+    font-size: 16px;
+    margin-bottom: 30px;
+}
+
+.areas-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+.area-card {
+    background: white;
+    padding: 25px;
+    border-radius: 8px;
+    border-left: 4px solid #ff5e14;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.area-card h4 {
+    color: #1d2939;
+    margin-bottom: 10px;
+    font-size: 18px;
+}
+
+.area-card p {
+    color: #666;
+    font-size: 14px;
+    line-height: 1.6;
+    margin-bottom: 0;
+}
+
+/* Accessibility */
+.accessibility-section {
+    margin-bottom: 60px;
+}
+
+.accessibility-section h2 {
+    font-size: 32px;
+    color: #1d2939;
+    margin-bottom: 30px;
+    border-left: 4px solid #ff5e14;
+    padding-left: 15px;
+}
+
+.directions-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 20px;
+}
+
+.direction-item {
+    background: linear-gradient(135deg, #f9f9f9 0%, #f0f0f0 100%);
+    padding: 25px;
+    border-radius: 8px;
+    border-top: 4px solid #ff5e14;
+    text-align: center;
+}
+
+.direction-item h4 {
+    color: #1d2939;
+    margin-bottom: 10px;
+    font-size: 16px;
+}
+
+.direction-item p {
+    color: #666;
+    font-size: 14px;
+    line-height: 1.6;
+    margin-bottom: 0;
+}
+
+/* Visit Section */
+.visit-section {
+    background: linear-gradient(135deg, #1d2939 0%, #2a3f5f 100%);
+    color: white;
+    padding: 40px;
+    border-radius: 8px;
+    margin-bottom: 40px;
+}
+
+.visit-section h2 {
+    color: white;
+    margin-bottom: 20px;
+    font-size: 28px;
+}
+
+.visit-checklist {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 15px;
+}
+
+.visit-checklist li {
+    padding: 12px 0;
+    color: #f0f0f0;
+    font-size: 15px;
+    line-height: 1.6;
+}
+
+/* Location CTA */
+.location-cta {
+    background: linear-gradient(135deg, #ff5e14 0%, #ff7c3f 100%);
+    color: white;
+    padding: 40px;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.location-cta h3 {
+    font-size: 28px;
+    margin-bottom: 10px;
+    color: white;
+}
+
+.location-cta p {
+    font-size: 16px;
+    margin-bottom: 25px;
+    color: #f0f0f0;
+}
+
+.cta-buttons {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.btn-call, .btn-email {
+    display: inline-block;
+    padding: 12px 25px;
+    background: white;
+    color: #ff5e14;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.btn-call:hover, .btn-email:hover {
+    background: #f0f0f0;
+    transform: scale(1.05);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .location-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .directions-grid, .areas-grid, .visit-checklist {
+        grid-template-columns: 1fr;
+    }
+
+    .location-section h2, .accessibility-section h2 {
+        font-size: 24px;
+    }
+}
+</style>
+
+{% endblock %}

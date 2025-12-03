@@ -1,0 +1,426 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<section class="page-content">
+    <h1>Contact MRR Cranes and Transport</h1>
+    <p class="page-intro">Get in touch with us for quotes, inquiries, and emergency support</p>
+
+    <div class="contact-container">
+        <!-- Contact Info Cards -->
+        <section class="contact-info-section">
+            <div class="info-cards-grid">
+                <div class="info-card">
+                    <div class="icon">📞</div>
+                    <h3>Call Us</h3>
+                    <p class="highlight-text">{{ contact_num }}</p>
+                    <p class="highlight-text">9087881888</p>
+                    <p>Available 24x7 for emergency and scheduled services</p>
+                </div>
+
+                <div class="info-card">
+                    <div class="icon">📧</div>
+                    <h3>Email Us</h3>
+                    <p class="highlight-text">mrrcranesandtransport@gmail.com</p>
+                    <p>Send us details about your project for a quick quotation</p>
+                </div>
+
+                <div class="info-card">
+                    <div class="icon">📍</div>
+                    <h3>Visit Us</h3>
+                    <p class="highlight-text">Kannapalayam, Chennai</p>
+                    <p>No. 2/723, NSR Nagar Main Road, Chennai – 600072</p>
+                </div>
+
+                <div class="info-card">
+                    <div class="icon">⏰</div>
+                    <h3>Operating Hours</h3>
+                    <p class="highlight-text">24x7 Available</p>
+                    <p>Emergency services support round the clock</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Form & Map -->
+        <section class="contact-form-section">
+            <div class="form-grid">
+                <!-- Contact Form -->
+                <div class="form-card">
+                    <h2>Send us a Message</h2>
+                    <form class="contact-form">
+                        <div class="form-group">
+                            <label for="name">Full Name *</label>
+                            <input type="text" id="name" name="name" placeholder="Your Name" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Email Address *</label>
+                            <input type="email" id="email" name="email" placeholder="your@email.com" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="phone">Phone Number *</label>
+                            <input type="tel" id="phone" name="phone" placeholder="9841099558" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="service">Service Required *</label>
+                            <select id="service" name="service" required>
+                                <option value="">Select a service</option>
+                                <option value="crane">Hydraulic/Mobile Crane Rental</option>
+                                <option value="lifting">Heavy Lifting Operations</option>
+                                <option value="machinery">Machinery Shifting</option>
+                                <option value="windmill">Windmill Blade Transport</option>
+                                <option value="bridge">Bridge Girder Lifting</option>
+                                <option value="earthmover">Earthmover/JCB Hire</option>
+                                <option value="transport">Specialized Transport</option>
+                                <option value="other">Other Services</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="project">Project Details *</label>
+                            <textarea id="project" name="project" rows="5" placeholder="Describe your project and requirements" required></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="date">Preferred Date</label>
+                            <input type="date" id="date" name="date">
+                        </div>
+
+                        <button type="submit" class="btn-submit">Send Inquiry</button>
+                    </form>
+                </div>
+
+                <!-- Map Card -->
+                <div class="map-card">
+                    <h2>Our Location</h2>
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3888.9203394625!2d80.1234!3d13.0123!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a5266f1234567%3A0x1234567890abcd!2sKannapalayam%2C%20Chennai!5e0!3m2!1sen!2sin!4v1234567890" width="100%" height="100%" style="border: none; border-radius: 8px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+            </div>
+        </section>
+
+        <!-- Why Contact Us -->
+        <section class="why-contact-section">
+            <h2>Why Contact MRR Cranes and Transport?</h2>
+            <div class="benefits-grid">
+                <div class="benefit-item">
+                    <h4>⚡ Quick Response</h4>
+                    <p>Get quote and support within 1-2 hours of inquiry</p>
+                </div>
+                <div class="benefit-item">
+                    <h4>💰 Competitive Pricing</h4>
+                    <p>Best rates in the industry without hidden charges</p>
+                </div>
+                <div class="benefit-item">
+                    <h4>🛡️ Safety Assured</h4>
+                    <p>All operations comply with international safety standards</p>
+                </div>
+                <div class="benefit-item">
+                    <h4>📅 Flexible Scheduling</h4>
+                    <p>Accommodate urgent and scheduled requirements</p>
+                </div>
+                <div class="benefit-item">
+                    <h4>👨‍💼 Expert Consultation</h4>
+                    <p>Experienced engineers for custom project planning</p>
+                </div>
+                <div class="benefit-item">
+                    <h4>✅ Reliable Service</h4>
+                    <p>500+ completed projects with 100% client satisfaction</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section class="faq-section">
+            <h2>Frequently Asked Questions</h2>
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <h4>Q: What is your service area?</h4>
+                    <p>A: We operate across Chennai and surrounding industrial zones including Poonamallee, Avadi, OMR, and nearby areas. Emergency services available 24x7.</p>
+                </div>
+                <div class="faq-item">
+                    <h4>Q: Do you provide quotations?</h4>
+                    <p>A: Yes! Send us your project details and we'll provide a detailed quotation within 2 hours. On-site survey available upon request.</p>
+                </div>
+                <div class="faq-item">
+                    <h4>Q: What is your maximum lifting capacity?</h4>
+                    <p>A: Our equipment ranges from 12-ton to 18+ ton capacity. Contact us with your specific requirements for exact specifications.</p>
+                </div>
+                <div class="faq-item">
+                    <h4>Q: Are you GST registered?</h4>
+                    <p>A: Yes, we are GST registered (33APBPR4981D1ZX). We provide proper invoicing and tax documentation for all services.</p>
+                </div>
+                <div class="faq-item">
+                    <h4>Q: Do you provide emergency services?</h4>
+                    <p>A: Absolutely! We have emergency response teams available 24x7. Call us immediately for urgent requirements.</p>
+                </div>
+                <div class="faq-item">
+                    <h4>Q: Can you handle custom projects?</h4>
+                    <p>A: Yes! We specialize in custom solutions. Our experienced engineers plan and execute complex lifting and transport operations.</p>
+                </div>
+            </div>
+        </section>
+    </div>
+</section>
+
+<style>
+.page-intro {
+    text-align: center;
+    font-size: 18px;
+    color: #666;
+    margin-bottom: 40px;
+}
+
+.contact-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Info Cards Section */
+.contact-info-section {
+    margin-bottom: 60px;
+}
+
+.info-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 25px;
+}
+
+.info-card {
+    background: linear-gradient(135deg, #fff9e6 0%, #fff5e6 100%);
+    padding: 30px;
+    border-radius: 8px;
+    text-align: center;
+    border-top: 4px solid #ff5e14;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+    transition: 0.3s;
+}
+
+.info-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 20px rgba(0,0,0,0.12);
+}
+
+.info-card .icon {
+    font-size: 48px;
+    margin-bottom: 15px;
+}
+
+.info-card h3 {
+    font-size: 22px;
+    color: #1d2939;
+    margin-bottom: 10px;
+}
+
+.highlight-text {
+    font-size: 18px;
+    font-weight: bold;
+    color: #ff5e14;
+    margin-bottom: 8px;
+}
+
+.info-card p {
+    color: #666;
+    font-size: 14px;
+    line-height: 1.6;
+    margin-bottom: 0;
+}
+
+/* Form Section */
+.contact-form-section {
+    margin-bottom: 60px;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+}
+
+.form-card, .map-card {
+    background: white;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+}
+
+.form-card h2, .map-card h2 {
+    font-size: 26px;
+    color: #1d2939;
+    margin-bottom: 25px;
+    border-left: 4px solid #ff5e14;
+    padding-left: 15px;
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #1d2939;
+    font-size: 14px;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px;
+    font-family: Arial, sans-serif;
+    transition: 0.3s;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: #ff5e14;
+    box-shadow: 0 0 5px rgba(255, 94, 20, 0.3);
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+.btn-submit {
+    padding: 14px;
+    background: #ff5e14;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+    margin-top: 10px;
+}
+
+.btn-submit:hover {
+    background: #1d2939;
+    transform: scale(1.02);
+}
+
+.map-card {
+    min-height: 400px;
+}
+
+/* Why Contact Section */
+.why-contact-section {
+    background: #f9f9f9;
+    padding: 40px;
+    border-radius: 8px;
+    margin-bottom: 60px;
+}
+
+.why-contact-section h2 {
+    font-size: 28px;
+    color: #1d2939;
+    margin-bottom: 30px;
+    text-align: center;
+    border-left: 4px solid #ff5e14;
+    padding-left: 15px;
+    margin-left: 0;
+}
+
+.benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+.benefit-item {
+    background: white;
+    padding: 25px;
+    border-radius: 8px;
+    border-left: 4px solid #ff5e14;
+}
+
+.benefit-item h4 {
+    color: #1d2939;
+    margin-bottom: 10px;
+    font-size: 18px;
+}
+
+.benefit-item p {
+    color: #666;
+    font-size: 14px;
+    line-height: 1.6;
+    margin-bottom: 0;
+}
+
+/* FAQ Section */
+.faq-section {
+    margin-bottom: 40px;
+}
+
+.faq-section h2 {
+    font-size: 28px;
+    color: #1d2939;
+    margin-bottom: 30px;
+    border-left: 4px solid #ff5e14;
+    padding-left: 15px;
+}
+
+.faq-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+}
+
+.faq-item {
+    background: white;
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    border-left: 4px solid #ff5e14;
+}
+
+.faq-item h4 {
+    color: #1d2939;
+    margin-bottom: 12px;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.faq-item p {
+    color: #666;
+    font-size: 14px;
+    line-height: 1.7;
+    margin-bottom: 0;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .info-cards-grid, .benefits-grid, .faq-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .map-card {
+        min-height: 300px;
+    }
+
+    .why-contact-section h2, .faq-section h2 {
+        font-size: 24px;
+    }
+}
+</style>
+
+{% endblock %}

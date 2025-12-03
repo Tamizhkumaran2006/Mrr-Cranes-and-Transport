@@ -1,0 +1,98 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<section class="page-content">
+    <h1>Our Blog</h1>
+    <p>Latest crane operations, heavy lift projects, and transport works handled by our team.</p>
+
+    <div class="blog-container">
+        {%if posts %}
+            {% for post in posts %}
+            <div class="blog-card">
+                {% if post.image %}
+                    <img src="{{ post.image.url }}" alt="{{ post.title }}">
+                {% else %}
+                    <img src="D:\CODING\Django\djanproj1\blog\templates\jcb_pic.jpg" alt="Default Image">
+                {% endif %}
+                <h2>{{post.title}}</h2>
+                {% comment %} <p>{{post.content|truncatewords:10}}...</p> {% endcomment %}
+                <p class="preview-text">{{ post.content }}</p>
+
+                <a href="{% url 'blog:detail' pk=post.pk %}" class="read-more">View Project →</a>
+            </div>
+            {% endfor %}
+        {%else%}
+            <p>No blog posts available at the moment. Please check back later!</p>
+        {%endif%}
+    </div>
+</section>
+
+<style>
+.blog-container {
+    margin-top: 40px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+}
+
+.blog-card {
+    background: #ffffff;
+    padding: 0 0 15px 0;
+    border-radius: 8px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+    overflow: hidden;
+    transition: 0.3s;
+}
+
+.blog-card:hover {
+    transform: translateY(-5px);
+}
+
+.blog-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.blog-card h2 {
+    padding: 10px 15px 0 15px;
+    font-size: 20px;
+}
+
+.blog-card p {
+    padding: 0 15px;
+    font-size: 14px;
+    color: #444;
+}
+
+.read-more {
+    display: inline-block;
+    margin: 10px 15px;
+    color: #1d2939;
+    font-weight: bold;
+    text-decoration: none;
+    transition: 0.2s;
+}
+
+.read-more:hover {
+    color: #ff5e14;
+}
+
+.preview-text {
+    padding: 0 15px;
+    font-size: 14px;
+    color: #444;
+
+    /* MAGIC CODE 🔥 */
+    display: -webkit-box;
+    -webkit-line-clamp: 3;    /* show only 3 lines */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+
+</style>
+
+{% endblock %}

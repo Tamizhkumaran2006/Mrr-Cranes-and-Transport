@@ -1,0 +1,40 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Home | Transport Co</title>
+  <link rel="stylesheet" href="{% static 'blog/style.css' %}" />
+</head>
+<body>
+    
+  <header>
+    <div class="top-bar">
+      <span>Email us at : mrrcranesandtransport@gmail.com</span>
+      <span class="right">Call us: 9841099558</span>
+    </div>
+    <nav class="navbar">
+      <div class="logo">Transport Co.</div>
+      <ul>
+        <li><a href="{% url 'blog:index' %}">Home</a></li>
+        <li><a href="{% url 'blog:about' %}">About Us</a></li>
+        <li><a href="{% url 'blog:blog' %}">Blog</a></li>
+        <li><a href="{% url 'blog:location' %}">Location</a></li>
+        <li><a href="{% url 'blog:contact' %}">Contact</a></li>
+        <li><a href="{% url 'blog:owner_login' %}">Owner Login</a></li>
+      </ul>
+    </nav>
+  </header>
+
+
+
+  <!--DYNAMIC CONTENT-->
+
+  {% block content %}
+
+  {% endblock %}
+
+  </body>
+</html>

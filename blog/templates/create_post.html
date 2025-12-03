@@ -1,0 +1,133 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="page-content">
+    <div class="form-container">
+        <h1>Create New Post</h1>
+        <form method="post" enctype="multipart/form-data" class="post-form">
+            {% csrf_token %}
+            
+            <div class="form-group">
+                <label for="{{ form.title.id_for_label }}">{{ form.title.label }}</label>
+                {{ form.title }}
+                {% if form.title.errors %}<span class="error">{{ form.title.errors.0 }}</span>{% endif %}
+            </div>
+            
+            <div class="form-group">
+                <label for="{{ form.content.id_for_label }}">{{ form.content.label }}</label>
+                {{ form.content }}
+                {% if form.content.errors %}<span class="error">{{ form.content.errors.0 }}</span>{% endif %}
+            </div>
+            
+            <div class="form-group">
+                <label for="{{ form.image.id_for_label }}">{{ form.image.label }}</label>
+                {{ form.image }}
+                {% if form.image.errors %}<span class="error">{{ form.image.errors.0 }}</span>{% endif %}
+            </div>
+            
+            <div class="form-actions">
+                <button type="submit" class="btn-submit">Create Post</button>
+                <a href="{% url 'blog:dashboard' %}" class="btn-cancel">Cancel</a>
+            </div>
+        </form>
+    </div>
+</section>
+
+<style>
+.form-container {
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 30px;
+    background: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+}
+
+.form-container h1 {
+    color: #1d2939;
+    margin-bottom: 30px;
+}
+
+.post-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #1d2939;
+}
+
+.form-input, .form-textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+.form-textarea {
+    resize: vertical;
+    min-height: 200px;
+}
+
+.form-input:focus, .form-textarea:focus {
+    outline: none;
+    border-color: #ff5e14;
+    box-shadow: 0 0 5px rgba(255, 94, 20, 0.3);
+}
+
+.form-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.btn-submit, .btn-cancel {
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.btn-submit {
+    background: #ff5e14;
+    color: white;
+    flex: 1;
+}
+
+.btn-submit:hover {
+    background: #1d2939;
+}
+
+.btn-cancel {
+    background: #ddd;
+    color: #333;
+    flex: 1;
+    text-align: center;
+}
+
+.btn-cancel:hover {
+    background: #999;
+}
+
+.error {
+    color: #c33;
+    font-size: 12px;
+    display: block;
+    margin-top: 5px;
+}
+</style>
+{% endblock %}

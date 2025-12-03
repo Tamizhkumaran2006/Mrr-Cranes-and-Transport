@@ -1,0 +1,21 @@
+# Exported from Render on 2025-12-02T16:50:57Z
+version: "1"
+services:
+- type: web
+  name: Mrr-Cranes-and-Transport-1
+  runtime: python
+  repo: https://github.com/Tamizhkumaran2006/Mrr-Cranes-and-Transport
+  plan: free
+  region: oregon
+  rootDir: .
+  buildCommand: pip install -r requirements.txt && python manage.py collectstatic --noinput && python manage.py migrate
+  startCommand: gunicorn djanproj1.wsgi:application
+  autoDeployTrigger: commit
+  envVars:
+    - key: SECRET_KEY
+      scope: build
+      sync: false
+    - key: DEBUG
+      value: "False"
+      scope: build
+      sync: false

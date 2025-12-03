@@ -1,0 +1,121 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="page-content">
+  {% if post %}
+    <div class="post-detail">
+      <a href="{% url 'blog:blog' %}" class="back-link">← Back to Blog</a>
+      
+      <h1>{{ post.title }}</h1>
+      <div class="post-content">
+        {% if post.image %}
+                    <img src="{{ post.image.url }}" alt="{{ post.title }}" class="post-image">
+        {% endif %}
+        <p>{{ post.content }}</p>
+      </div>
+    </div>
+  {% else %}
+    <div class="post-detail">
+      <p>Post not found.</p>
+      <a href="{% url 'blog:blog' %}" class="back-link">← Back to Blog</a>
+    </div>
+  {% endif %}
+</section>
+
+{% comment %} <style>
+.post-detail {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 20px;
+  background: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 20px;
+  color: #ff5e14;
+  text-decoration: none;
+  font-weight: bold;
+  transition: 0.2s;
+}
+
+.back-link:hover {
+  color: #1d2939;
+}
+
+.post-detail h1 {
+  font-size: 32px;
+  margin: 20px 0;
+  color: #1d2939;
+}
+
+.post-content {
+  font-size: 16px;
+  line-height: 1.6;
+  color: #444;
+}
+</style> {% endcomment %}
+
+<style>
+.post-detail {
+  max-width: 900px;
+  width: 100%;
+  margin: 40px auto;
+  padding: 30px;
+  background: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+
+  /* IMPORTANT FIX */
+  height: auto;                    /* Box grows based on content */
+  overflow-wrap: break-word;       /* Prevent long words from escaping */
+  word-wrap: break-word;
+  white-space: normal;             /* Allows wrapping */
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 20px;
+  color: #ff5e14;
+  text-decoration: none;
+  font-weight: bold;
+  transition: 0.2s;
+}
+
+.back-link:hover {
+  color: #1d2939;
+}
+
+.post-detail h1 {
+  font-size: 32px;
+  margin: 20px 0;
+  color: #1d2939;
+}
+
+.post-content {
+  font-size: 16px;
+  line-height: 1.7;
+  color: #444;
+
+  /* FIX for long paragraphs */
+  white-space: pre-line;       /* keeps spacing but wraps text */
+  overflow-wrap: break-word;
+}
+
+.post-image {
+  width: 100%;                 /* Always fit inside box width */
+  height: auto;                /* Auto adjust height */
+  max-height: 450px;           /* Prevent huge images */
+  object-fit: contain;         /* IMPORTANT: shows full image */
+  display: block;
+  margin: 0 auto 20px auto;    /* Center the image */
+  border-radius: 8px;
+  border: 1px solid #ddd;      /* Optional: clean border */
+}
+
+
+</style>
+
+{% endblock %}

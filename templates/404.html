@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="page-content">
+    <div class="error-container">
+        <h1>404</h1>
+        <h2>Page Not Found</h2>
+        <p>Sorry, the page you're looking for doesn't exist or has been moved.</p>
+        <a href="{% url 'blog:index' %}" class="btn-home">← Back to Home</a>
+    </div>
+</section>
+
+<style>
+.error-container {
+    max-width: 600px;
+    margin: 80px auto;
+    padding: 40px;
+    text-align: center;
+    background: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+}
+
+.error-container h1 {
+    font-size: 72px;
+    color: #ff5e14;
+    margin: 0;
+}
+
+.error-container h2 {
+    font-size: 28px;
+    color: #1d2939;
+    margin: 10px 0 20px 0;
+}
+
+.error-container p {
+    font-size: 16px;
+    color: #666;
+    margin: 20px 0;
+}
+
+.btn-home {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background: #ff5e14;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.btn-home:hover {
+    background: #1d2939;
+}
+</style>
+{% endblock %}
