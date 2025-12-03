@@ -6,33 +6,27 @@
     <div class="login-container">
         <h1>Owner Login</h1>
         <form method="post" class="login-form">
-            {% csrf_token %}
-            {% if form.non_field_errors %}
-                <div class="error-message">
-                    {% for error in form.non_field_errors %}
-                        <p>{{ error }}</p>
-                    {% endfor %}
-                </div>
-            {% endif %}
-            
-            <div class="form-group">
-                <label for="{{ form.username.id_for_label }}">{{ form.username.label }}</label>
-                {{ form.username }}
-                {% if form.username.errors %}
-                    <span class="error">{{ form.username.errors.0 }}</span>
-                {% endif %}
-            </div>
-            
-            <div class="form-group">
-                <label for="{{ form.password.id_for_label }}">{{ form.password.label }}</label>
-                {{ form.password }}
-                {% if form.password.errors %}
-                    <span class="error">{{ form.password.errors.0 }}</span>
-                {% endif %}
-            </div>
-            
-            <button type="submit" class="btn-submit">Login</button>
-        </form>
+    {% csrf_token %}
+
+    {% if error %}
+        <div class="error-message">
+            <p style="color: red;">{{ error }}</p>
+        </div>
+    {% endif %}
+
+    <div class="form-group">
+        <label for="id_username">Username</label>
+        <input type="text" id="id_username" name="username" placeholder="Enter username" required>
+    </div>
+
+    <div class="form-group">
+        <label for="id_password">Password</label>
+        <input type="password" id="id_password" name="password" placeholder="Enter password" required>
+    </div>
+
+    <button type="submit" class="btn-submit">Login</button>
+</form>
+
     </div>
 </section>
 

@@ -32,30 +32,65 @@ def detail(request, pk):
     post = get_object_or_404(Post, pk=pk)
     return render(request, 'detail.html', {'post': post})
 
+# def owner_login(request):
+#     if request.method == 'POST':
+#         form = LoginForm(request.POST)
+#         if form.is_valid():
+#             username = form.cleaned_data['username']
+#             password = form.cleaned_data['password']
+#             user = authenticate(request, username=username, password=password)
+#             if user is not None:
+#                 login(request, user)
+#                 return redirect('blog:dashboard')
+#             else:
+#                 form.add_error(None, 'Invalid username or password')
+#     else:
+#         form = LoginForm()
+#     return render(request, 'owner_login.html', {'form': form})
+
 def owner_login(request):
-    if request.method == 'POST':
-        form = LoginForm(request.POST)
-        if form.is_valid():
-            username = form.cleaned_data['username']
-            password = form.cleaned_data['password']
-            user = authenticate(request, username=username, password=password)
-            if user is not None:
-                login(request, user)
-                return redirect('blog:dashboard')
-            else:
-                form.add_error(None, 'Invalid username or password')
-    else:
-        form = LoginForm()
-    return render(request, 'owner_login.html', {'form': form})
+    if request.method == "POST":
+        username = request.POST.get("username")
+        password = request.POST.get("password")
+
+        # Your fixed credentials
+        OWNER_USERNAME = "Rajaraman"
+        OWNER_PASSWORD = "mrr_1981"
+
+        if username == OWNER_USERNAME and password == OWNER_PASSWORD:
+            request.session["owner_logged_in"] = True
+            return redirect("blog:dashboard")
+        else:
+            error_message = "Invalid username or password"
+            return render(request, "owner_login.html", {"error": error_message})
+
+    return render(request, "owner_login.html")
+
+
+# def owner_logout(request):
+#     logout(request)
+#     return redirect('blog:index')
 
 def owner_logout(request):
-    logout(request)
+    request.session.flush()   # Clear all session data
     return redirect('blog:index')
 
+
 @login_required(login_url='blog:owner_login')
+# def dashboard(request):
+#     posts = Post.objects.filter(author=request.user)
+#     return render(request, 'dashboard.html', {'posts': posts})
+
 def dashboard(request):
-    posts = Post.objects.filter(author=request.user)
+    # Check login session
+    if not request.session.get("owner_logged_in"):
+        return redirect("blog:owner_login")
+
+    # Show all posts (because no Django user system)
+    posts = Post.objects.all().order_by('-id')
+
     return render(request, 'dashboard.html', {'posts': posts})
+
 
 @login_required(login_url='blog:owner_login')
 def create_post(request):
