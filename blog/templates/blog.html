@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block content %}
 
@@ -13,7 +14,7 @@
                 {% if post.image %}
                     <img src="{{ post.image.url }}" alt="{{ post.title }}">
                 {% else %}
-                    <img src="D:\CODING\Django\djanproj1\blog\templates\jcb_pic.jpg" alt="Default Image">
+                    <img src="{% static 'blog/default-image.jpg' %}" alt="Default Image">
                 {% endif %}
                 <h2>{{post.title}}</h2>
                 {% comment %} <p>{{post.content|truncatewords:10}}...</p> {% endcomment %}

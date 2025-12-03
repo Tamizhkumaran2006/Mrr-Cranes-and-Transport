@@ -14,6 +14,23 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+# from django.contrib import admin
+# from django.urls import path, include
+# from django.conf import settings
+# from django.conf.urls.static import static
+
+# handler404 = 'blog.views.custom_404_view'
+
+# urlpatterns = [
+#     path('', include('blog.urls')),  # include blog urls at project root
+#     path('admin/', admin.site.urls),
+# ]
+
+# if settings.DEBUG:
+#     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATICFILES_DIRS[0])
+#     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+
 from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
@@ -26,5 +43,10 @@ urlpatterns = [
     path('admin/', admin.site.urls),
 ]
 
+# Development-only static & media serving
 if settings.DEBUG:
+    # serve STATIC files from STATIC_ROOT (after collectstatic) for a production-like test
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+
+    # serve MEDIA files from MEDIA_ROOT
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
