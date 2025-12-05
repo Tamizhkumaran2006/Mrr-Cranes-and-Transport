@@ -35,6 +35,7 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
+import os
 
 handler404 = 'blog.views.custom_404_view'
 
@@ -45,8 +46,8 @@ urlpatterns = [
 
 # Development-only static & media serving
 if settings.DEBUG:
-    # serve STATIC files from STATIC_ROOT (after collectstatic) for a production-like test
-    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+    # serve STATIC files from STATICFILES_DIRS for development
+    urlpatterns += static(settings.STATIC_URL, document_root=str(settings.STATICFILES_DIRS[0]))
 
     # serve MEDIA files from MEDIA_ROOT
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    urlpatterns += static(settings.MEDIA_URL, document_root=str(settings.MEDIA_ROOT))
