@@ -1,18 +1,19 @@
+import logging
+
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
 from django.urls import reverse
+from django.conf import settings
 from functools import wraps
-from .models import Post
+from django.core.mail import send_mail
+from django.contrib.auth import logout
+from django.contrib.auth.decorators import user_passes_test
+
+from .models import Post, ContactMessage
 from .forms import PostForm, LoginForm
 
-# Decorator to check session-based login
 def owner_login_required(view_func):
-    @wraps(view_func)
-    def wrapper(request, *args, **kwargs):
-        if not request.session.get('owner_logged_in'):
-            return redirect('blog:owner_login')
-        return view_func(request, *args, **kwargs)
-    return wrapper
+    return user_passes_test(lambda u: u.is_authenticated and u.is_staff, login_url='/admin/login/')(view_func)
 
 def index(request):
     you_are_in = "HOME"
@@ -32,9 +33,6 @@ def location(request):
     return render(request, 'location.html', {'you_are_in': you_are_in})
 
 def contact(request):
-    from django.core.mail import send_mail
-    from .models import ContactMessage
-    
     contact_num = '9841099558'
     you_are_in = "CONTACT US"
     message = None
@@ -60,7 +58,7 @@ def contact(request):
                 )
                 
                 # Send email to owner
-                owner_email = 'mrrcranesandtransport@gmail.com'
+                owner_email = settings.ADMIN_EMAIL
                 subject = f'New Quote Request from {name}'
                 
                 email_body = f"""
@@ -83,15 +81,23 @@ def contact(request):
                 MRR Cranes and Transport Website
                 """
                 
-                send_mail(
-                    subject,
-                    email_body,
-                    'noreply@mrrcranesandtransport.com',
-                    [owner_email],
-                    fail_silently=False,
-                )
-                
-                message = {'type': 'success', 'text': 'Thank you! Your inquiry has been received. We will contact you within 2 hours.'}
+                try:
+                    send_mail(
+                        subject,
+                        email_body,
+                        settings.DEFAULT_FROM_EMAIL,
+                        [owner_email],
+                        fail_silently=False,
+                    )
+                    message = {'type': 'success', 'text': 'Thank you! Your inquiry has been received. We will contact you within 2 hours.'}
+                except Exception as email_error:
+                    logger = logging.getLogger(__name__)
+                    logger.exception("Email sending failed")
+
+                    error_text = 'Your inquiry was saved, but we could not send the email notification right now.'
+                    if getattr(settings, 'DEBUG', False):
+                        error_text = f"{error_text} Error: {str(email_error)}"
+                    message = {'type': 'error', 'text': error_text}
             except Exception as e:
                 message = {'type': 'error', 'text': f'Error: {str(e)}'}
         else:
@@ -120,28 +126,7 @@ def detail(request, pk):
 #             else:
 #                 form.add_error(None, 'Invalid username or password')
 def owner_login(request):
-    if request.method == "POST":
-        username = request.POST.get("username", "").strip()
-        password = request.POST.get("password", "").strip()
-
-        # Fixed credentials
-        OWNER_USERNAME = "Rajaraman"
-        OWNER_PASSWORD = "mrr_1981"
-
-        # Check credentials
-        if username == OWNER_USERNAME and password == OWNER_PASSWORD:
-            # Set session
-            request.session["owner_logged_in"] = True
-            request.session.modified = True
-            return redirect("blog:dashboard")
-        else:
-            # Show error
-            context = {
-                "error": "Invalid username or password. Please try again."
-            }
-            return render(request, "owner_login.html", context)
-
-    return render(request, "owner_login.html")
+    return redirect('/admin/login/?next=/owner/dashboard/')
 
 
 # def owner_logout(request):
@@ -149,16 +134,12 @@ def owner_login(request):
 #     return redirect('blog:index')
 
 def owner_logout(request):
-    request.session.flush()   # Clear all session data
+    logout(request)
     return redirect('blog:index')
 
 
 @owner_login_required
 def dashboard(request):
-    # Check login session
-    if not request.session.get("owner_logged_in"):
-        return redirect("blog:owner_login")
-
     # Show all posts (because no Django user system)
     posts = Post.objects.all().order_by('-id')
 

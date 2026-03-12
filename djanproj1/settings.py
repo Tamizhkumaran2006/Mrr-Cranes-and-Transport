@@ -33,9 +33,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # ]
 
 
-from dotenv import load_dotenv
+try:
+    from dotenv import load_dotenv
 
-load_dotenv()
+    load_dotenv()
+except ModuleNotFoundError:
+    pass
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.getenv('SECRET_KEY', 'django-insecure-&qnkv*!gcn(6-z757^!52ia-jao)kj#37z+t7!!m5l-0a$qxbi')
@@ -45,6 +48,9 @@ DEBUG = os.getenv('DEBUG', 'False') == 'True'
 
 ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', 'localhost,127.0.0.1,mrr-cranes-and-transport-1.onrender.com').split(',')
 
+ADMIN_EMAIL = os.getenv('ADMIN_EMAIL', 'mrrcranesandtransport@gmail.com')
+
+DATABASE_URL = os.getenv('DATABASE_URL', '')
 
 # Application definition
 
@@ -55,6 +61,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'cloudinary',
+    'cloudinary_storage',
     'blog',
 ]
 
@@ -100,6 +108,11 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+if DATABASE_URL:
+    import dj_database_url
+
+    DATABASES['default'] = dj_database_url.parse(DATABASE_URL, conn_max_age=600)
     # |
     # |
 # DATABASES = {
@@ -160,7 +173,24 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # Media files (User uploads)
 MEDIA_URL = '/media/'
-MEDIA_ROOT = BASE_DIR / 'media'
+if not DEBUG:
+    CLOUDINARY_STORAGE = {
+        'CLOUD_NAME': os.getenv('CLOUDINARY_CLOUD_NAME', ''),
+        'API_KEY': os.getenv('CLOUDINARY_API_KEY', ''),
+        'API_SECRET': os.getenv('CLOUDINARY_API_SECRET', ''),
+    }
+
+    STORAGES = {
+        'default': {
+            'BACKEND': 'cloudinary_storage.storage.MediaCloudinaryStorage',
+        },
+        'staticfiles': {
+            'BACKEND': 'whitenoise.storage.CompressedManifestStaticFilesStorage',
+        },
+    }
+    DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+else:
+    MEDIA_ROOT = BASE_DIR / 'media'
 
 # Login redirect
 LOGIN_URL = 'blog:owner_login'
@@ -172,7 +202,7 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER', 'mrrcranesandtransport@gmail.com')
-EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD', '')  # Add your app password in .env
+EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD', '')  # Must be Gmail App Password, not regular password
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
 LOGGING = {
