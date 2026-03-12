@@ -23,7 +23,11 @@
         <li><a href="{% url 'blog:blog' %}">Blog</a></li>
         <li><a href="{% url 'blog:location' %}">Location</a></li>
         <li><a href="{% url 'blog:contact' %}">Contact</a></li>
+        {% if user.is_authenticated and user.is_staff %}
+        <li><a href="{% url 'blog:dashboard' %}">Dashboard</a></li>
+        {% else %}
         <li><a href="{% url 'blog:owner_login' %}">Admin Login</a></li>
+        {% endif %}
       </ul>
     </nav>
   </header>

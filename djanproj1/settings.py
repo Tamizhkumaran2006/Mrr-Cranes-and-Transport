@@ -161,9 +161,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 STATIC_URL = '/static/'
 
-STATICFILES_DIRS = [
-    BASE_DIR / 'blog' / 'static',
-]
+STATICFILES_DIRS = []
 
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 
@@ -209,6 +207,7 @@ EMAIL_USE_TLS = True
 EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER', 'mrrcranesandtransport@gmail.com')
 EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD', '')  # Must be Gmail App Password, not regular password
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+EMAIL_TIMEOUT = int(os.getenv('EMAIL_TIMEOUT', '10'))
 
 LOGGING = {
     "version": 1,
