@@ -9,7 +9,7 @@ services:
   region: oregon
   rootDir: .
   buildCommand: pip install -r requirements.txt && python manage.py collectstatic --noinput
-  startCommand: python manage.py migrate && python manage.py ensure_superuser && gunicorn djanproj1.wsgi:application
+  startCommand: python manage.py migrate && python manage.py ensure_superuser && gunicorn djanproj1.wsgi:application --bind 0.0.0.0:$PORT
   autoDeployTrigger: commit
   envVars:
     - key: SECRET_KEY
