@@ -173,24 +173,29 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # Media files (User uploads)
 MEDIA_URL = '/media/'
-if not DEBUG:
-    CLOUDINARY_STORAGE = {
-        'CLOUD_NAME': os.getenv('CLOUDINARY_CLOUD_NAME', ''),
-        'API_KEY': os.getenv('CLOUDINARY_API_KEY', ''),
-        'API_SECRET': os.getenv('CLOUDINARY_API_SECRET', ''),
-    }
+MEDIA_ROOT = BASE_DIR / 'media'
 
-    STORAGES = {
-        'default': {
-            'BACKEND': 'cloudinary_storage.storage.MediaCloudinaryStorage',
-        },
-        'staticfiles': {
-            'BACKEND': 'whitenoise.storage.CompressedManifestStaticFilesStorage',
-        },
-    }
-    DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
-else:
-    MEDIA_ROOT = BASE_DIR / 'media'
+if not DEBUG:
+    _cloud_name = os.getenv('CLOUDINARY_CLOUD_NAME', '')
+    _api_key = os.getenv('CLOUDINARY_API_KEY', '')
+    _api_secret = os.getenv('CLOUDINARY_API_SECRET', '')
+
+    if _cloud_name and _api_key and _api_secret:
+        CLOUDINARY_STORAGE = {
+            'CLOUD_NAME': _cloud_name,
+            'API_KEY': _api_key,
+            'API_SECRET': _api_secret,
+        }
+
+        STORAGES = {
+            'default': {
+                'BACKEND': 'cloudinary_storage.storage.MediaCloudinaryStorage',
+            },
+            'staticfiles': {
+                'BACKEND': 'whitenoise.storage.CompressedManifestStaticFilesStorage',
+            },
+        }
+        DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
 # Login redirect
 LOGIN_URL = 'blog:owner_login'

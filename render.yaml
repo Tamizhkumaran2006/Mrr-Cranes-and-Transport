@@ -8,8 +8,8 @@ services:
   plan: free
   region: oregon
   rootDir: .
-  buildCommand: pip install -r requirements.txt && python manage.py collectstatic --noinput && python manage.py migrate && python manage.py ensure_superuser
-  startCommand: gunicorn djanproj1.wsgi:application
+  buildCommand: pip install -r requirements.txt && python manage.py collectstatic --noinput
+  startCommand: python manage.py migrate && python manage.py ensure_superuser && gunicorn djanproj1.wsgi:application
   autoDeployTrigger: commit
   envVars:
     - key: SECRET_KEY

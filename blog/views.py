@@ -90,7 +90,7 @@ def contact(request):
                         fail_silently=False,
                     )
                     message = {'type': 'success', 'text': 'Thank you! Your inquiry has been received. We will contact you within 2 hours.'}
-                except Exception as email_error:
+                except BaseException as email_error:
                     logger = logging.getLogger(__name__)
                     logger.exception("Email sending failed")
 
